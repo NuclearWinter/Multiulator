@@ -1,11 +1,18 @@
 #include <iostream>
 #include <cmath>
+#include <ctype.h>
+#include "stdio.h"
 #include <vector>
 #include <iostream>
 #include "mainpage.hpp"
 
+
+
 using namespace std;
 
+/** @brief This class holds all the information for an element
+ *
+ */
 class periodicElement {
     private:
         //!< The element's symbol
@@ -15,65 +22,157 @@ class periodicElement {
         //!< The element's atomic number
         int number;
         //!< The element's atomic mass
-        double mass;
-        //!< The element's electronegativity
-        double electronegativity;
+        double mass = 0.0;
         //!< The element's density
         double density;
+        //!< The element's group
+        int group;
+        //!< The element's period
+        int period;
         //!< The element's melting point
         double meltingPoint;
         //!< The element's boiling point
         double boilingPoint;
         //!< The element's ionization energy
         double ionizationEnergy;
-        //!< The element's group
-        int group;
-        //!< The element's period
-        int period;
+        //!< The element's electronegativity
+        double electronegativity;
         //!< The element's main configurations
         vector<int> mainConfigurations;
     public:
-        periodicElement(string symbol, string name, int number, double mass,  double density, int group, int period,
-                        double meltingPoint, double boilingPoint, double ionizationEnergy, double electronegativity,
-                        vector<int> mainconfigurations) {
-            this->symbol  = symbol;
-            this->name    = name;
-            this->number  = number;
-            this->mass    = mass;
-            this->density = density;
-            this->group   = group;
-            this->period  = period;
-            this->meltingPoint       = meltingPoint;
-            this->boilingPoint       = boilingPoint;
-            this->ionizationEnergy   = ionizationEnergy;
-            this->electronegativity  = electronegativity;
-            this->mainConfigurations = mainconfigurations;
-        };
+    virtual ~periodicElement() { }
 
-        periodicElement(string symbol, double mass) {
-            this->symbol = symbol;
-            this->mass   = mass;
-        }
+    periodicElement(string symbol, string name, int number, double mass,  double density, int group, int period,
+                    double meltingPoint, double boilingPoint, double ionizationEnergy, double electronegativity,
+                    vector<int> mainconfigurations) {
+        this->symbol  = symbol;
+        this->name    = name;
+        this->number  = number;
+        this->mass    = mass;
+        this->density = density;
+        this->group   = group;
+        this->period  = period;
+        this->meltingPoint       = meltingPoint;
+        this->boilingPoint       = boilingPoint;
+        this->ionizationEnergy   = ionizationEnergy;
+        this->electronegativity  = electronegativity;
+        this->mainConfigurations = mainconfigurations;
+    };
+
+    periodicElement(string symbol, double mass) {
+        this->symbol = symbol;
+        this->mass   = mass;
+    }
+
+    periodicElement() { }
+
+    const string &getSymbol() const {
+        return symbol;
+    }
+    void setSymbol(const string &symbol) {
+        periodicElement::symbol = symbol;
+    }
+
+    const string &getName() const {
+        return name;
+    }
+    void setName(const string &name) {
+        periodicElement::name = name;
+    }
+
+    int getNumber() const {
+        return number;
+    }
+    void setNumber(int number) {
+        periodicElement::number = number;
+    }
+
+    double getMass() const {
+        return mass;
+    }
+    void setMass(double mass) {
+        periodicElement::mass = mass;
+    }
+
+    double getDensity() const {
+        return density;
+    }
+    void setDensity(double density) {
+        periodicElement::density = density;
+    }
+
+    int getGroup() const {
+        return group;
+    }
+    void setGroup(int group) {
+        periodicElement::group = group;
+    }
+
+    int getPeriod() const {
+        return period;
+    }
+    void setPeriod(int period) {
+        periodicElement::period = period;
+    }
+
+    double getMeltingPoint() const {
+        return meltingPoint;
+    }
+    void setMeltingPoint(double meltingPoint) {
+        periodicElement::meltingPoint = meltingPoint;
+    }
+
+    double getBoilingPoint() const {
+        return boilingPoint;
+    }
+    void setBoilingPoint(double boilingPoint) {
+        periodicElement::boilingPoint = boilingPoint;
+    }
+
+    double getIonizationEnergy() const {
+        return ionizationEnergy;
+    }
+    void setIonizationEnergy(double ionizationEnergy) {
+        periodicElement::ionizationEnergy = ionizationEnergy;
+    }
+
+    double getElectronegativity() const {
+        return electronegativity;
+    }
+    void setElectronegativity(double electronegativity) {
+        periodicElement::electronegativity = electronegativity;
+    }
+
+    const vector<int> &getMainConfigurations() const {
+        return mainConfigurations;
+    }
+    void setMainConfigurations(const vector<int> &mainConfigurations) {
+        periodicElement::mainConfigurations = mainConfigurations;
+    }
 };
+
+//TODO vector that holds all the elements (and than the info needed of an element if it doesn't exist)
+//TODO function to cycle through that vector
 
 /** @brief See which elements the user needs and create them
  *  @param input The string of a particular character representing an element
  *  @return Returns whether the element was found or not
  */
-bool checkElement(string input, atomElement *placeIn) {
-    printf("Check Element with %s", input.c_str());
-
-    atomElement filledElement = atomElement(false);
+bool checkElement(string input, periodicElement *placeIn) {
+    cout << "Check Element with " << input << endl;
     vector<int> commonConfigurations;
 
     if (input == "H") {
         commonConfigurations = {1, -1};
-        *placeIn = atomElement("H", "Hydrogen", 1, 1.008, 2.20, 0.08988, 259.16*-1, 252.879*-1,
-        1312, 1, 1, commonConfigurations);
+        *placeIn = periodicElement(/*Symbol*/"H", /*Name*/"Hydrogen", /*Number*/1, /*Mass*/1.008,
+                /*Density @stp in g/L*/0.08988, /*Group*/1, /*Period*/1, /*Meltng Point (c)*/259.16*-1,
+                /*Boiling Point (c)*/252.879*-1, /*Ionization Energy (kJ/mol)*/1312.0,
+                /*Electronegativity*/2.20 , /*Main configurations*/commonConfigurations);
         return true;
+    } else {
+        cerr << "checkElement: cannot identify element" << endl;
+        return false;
     }
-
-    return false;
 }
 
 /** @brief Record the input for various places in the program
@@ -133,63 +232,85 @@ string helpScreen(string helpWith) {
 }
 
 /** @brief Gives various values for the inputted element based on the question and amount of the element
-*
+*   @param elementName The name of the element to check
+*   @param amount The amount of the element (to
 */
-double whatIsNumber(string question, string element, int amount) {
-    printf("What is Number with %i of %s\n", amount, element.c_str());
+double whatIsWeight(string elementName, int amount) {
+    if (elementName == "start") {
+        return 0;
+    }
 
-    double value;
+    cout << "What is Weight with " << amount << " of " << elementName << endl;
 
-    bool *falseBool = false;
-    atomElement *elementFull = *atomElement(&falseBool);
-    checkElement(element, &elementFull);
+    if (!isalpha(elementName[0])) {
+        cerr << "whatIsWeight: cannot use elementName, it is not alphabetic" <<endl;
+    }
 
-    if (elementFull->filled) {
-        value = elementFull->mass;
+    double value = 0.0;
+
+    periodicElement elementFull;
+
+    if (checkElement(elementName, &elementFull)) {
+        value = elementFull.getMass();
     } else {
-        printf("Unknown element %s, please enter its mass per mole: ", element.c_str());
+        cout << "whatIsWeight: Unknown elementName " << elementName << "please enter its mass per mole: ";
         cin >> value;
+    }
+
+    if (value == 0.0) {
+        cout << "whatIsWeight: element weight not filled" << endl;
     }
 
     return value * amount;
 }
 
 /** @brief Give the weight of a compound in grams per mole
-*
+*   @return The weight of the given compound
 */
 double gramsOfCompound(string compound) {
-    printf("Grams of Compound with %s\n", compound.c_str());
+    cout << "Grams of compound with " << compound << endl;
 
     double weight = 0;
-    string elementHolder = "";
+    string elementHolder = "start";
+    string elementAmount = "start";
     int amountOfElement  = 1;
 
+    //TODO Impliment a more elegant way to handle the first letter
+    bool firstDone = false;
     for (string::iterator letter = compound.begin(); letter != compound.end(); ++letter) {
-        if (*letter == ' ' || (letter+1) == compound.end()) {
-            weight += whatIsNumber("weight", elementHolder, amountOfElement);
+        if (isupper(*letter)) {
+            if (elementAmount != "start") {
+                /* Erases the 'start' in elementAmount */
+                elementAmount.erase(0, 5);
+
+                amountOfElement = (stoi(elementAmount));
+                elementAmount = "start";
+            }
+
+            weight += whatIsWeight(elementHolder, amountOfElement);
             elementHolder.erase();
             amountOfElement = 1;
+
+            elementHolder += *letter;
         } else if (isalpha(*letter)) {
             elementHolder += *letter;
         } else if (isdigit(*letter)) {
-            bool plusOne = isdigit(*(letter+1));
-            bool plusTwo = isdigit(*(letter+2));
-
-            //TODO Make this more flexible for inputting different amounts
-            if (plusOne && plusTwo) {
-                amountOfElement += stoi(*(letter+2) + "");
-                amountOfElement += stod(*(letter+1) + "") * 10;
-                amountOfElement += stod(*(letter) + "") * 100;
-            } else if (plusOne) {
-                amountOfElement += stod(*(letter+1) + "");
-                amountOfElement += stod(*(letter) + "") * 10;
-            } else {
-                amountOfElement += stod(*(letter) + "");
-            }
+            elementAmount += (*letter);
         } else {
-            cerr << "Error entering elements and amounts into grams of compound." << endl;
+            cerr << "gramsOfCompound: error entering compounds" << endl;
+        }
+
+        if ((letter+1) == compound.end()) {
+            if (elementAmount != "start") {
+                elementAmount.erase(0, 5);
+                amountOfElement = (stoi(elementAmount));
+                elementAmount = "start";
+            }
+
+            weight += whatIsWeight(elementHolder, amountOfElement);
         }
     }
+
 
     return weight;
 }
@@ -198,6 +319,8 @@ double gramsOfCompound(string compound) {
  *
  */
 void molarity(vector<string> parameterList) {
+    cout << "Molarity";
+
     if (parameterList[0] != "molarity") {
         cerr << "Something wrong occurred when entering the molarity function";
     } else {
