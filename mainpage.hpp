@@ -11,4 +11,59 @@
  *
  * Within the main function there is handling for input. The input is stored within a vector that rotates every other
  *
+ * For chemistry:
+ * //temps are in celcius
+//density at stp in g/L
+//most common configuration first
+//for the number of configurations just get the size of the array
  */
+
+/** TODO
+ *
+ *
+ */
+
+/** Changelog
+ *
+ */
+
+struct atomElement {
+    atomElement(const string &symbol, const string &name, int number, double mass, double electronegativity,
+                double density, double meltingPoint, double boilingPoint, double ionizationEnergy, int group,
+                int period, const vector<int> &mainConfigurations) : symbol(symbol), name(name), number(number),
+                                                                     mass(mass), electronegativity(electronegativity),
+                                                                     density(density), meltingPoint(meltingPoint),
+                                                                     boilingPoint(boilingPoint),
+                                                                     ionizationEnergy(ionizationEnergy), group(group),
+                                                                     period(period),
+                                                                     mainConfigurations(mainConfigurations) { }
+
+    atomElement(const bool &filled) {}
+
+    //!< Is this atomElement filled?
+    bool filled = true;
+    //!< The element's symbol
+    string symbol;
+    //!< The element's full name
+    string name;
+    //!< The element's atomic number
+    int number;
+    //!< The element's atomic mass
+    double mass;
+    //!< The element's electronegativity
+    double electronegativity;
+    //!< The element's density
+    double density;
+    //!< The element's melting point
+    double meltingPoint;
+    //!< The element's boiling point
+    double boilingPoint;
+    //!< The element's ionization energy
+    double ionizationEnergy;
+    //!< The element's group
+    int group;
+    //!< The element's period
+    int period;
+    //!< The element's main configurations
+    vector<int> mainConfigurations;
+};
