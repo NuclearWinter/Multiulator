@@ -158,6 +158,16 @@ class periodicElement {
  *
  */
 
+#define MT_MASS 0
+#define MT_DENSITY 0
+#define MT_GROUP 0
+#define MT_PERIOD 0
+#define MT_MLTPNT 0
+#define MT_BOILPNT 0
+#define MT_IONENG 0
+#define MT_ELECTRONEG 0
+#define MT_CONFIG {0}
+
 
 /** @brief See which elements the user needs and create them
  *  @param input The string of a particular character representing an element
@@ -170,109 +180,361 @@ bool checkElement(string input, periodicElement *placeIn) {
     map<string, periodicElement> table;
     map<string, periodicElement>::iterator tableIterator;
 
-    /*Symbol Name Number Mass Density @stp in g/L Group Period Meltng Point (c)*//*Boiling Point (c)*/
+    /*Symbol Name Number Mass Density @stp in g/L Group Period Meltng Point (c) Boiling Point (c)*/
     /*Ionization Energy (kJ/mol) Electronegativity Main configurations*/
-    table["H"] = periodicElement("H", "Hydrogen", 1, 1.008, 0.08988, 1, 1, 259.16*-1, 252.879*-1, 1312.0, 2.20 , commonConfigurations);
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
-    table[""] = periodicElement();
+    table["H"]   = periodicElement("H",   "Hydrogen",      1,  1.00794, 0.08988, 1, 1, 259.16*-1, 252.879*-1, 1312.0, 2.20,
+                                   {1, -1});
+
+    table["He"]  = periodicElement("He",  "Helium",        2,  4.00260, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Li"]  = periodicElement("Li",  "Lithium",       3,  6.941, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Be"]  = periodicElement("Be",  "Beryllium",     4,  9.012182, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["B"]   = periodicElement("B",   "Boron",         5,  10.811, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["C"]   = periodicElement("C",   "Carbon",        6,  12.0107, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["N"]   = periodicElement("N",   "Nitrogen",      7,  14.0067, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["O"]   = periodicElement("O",   "Oxygen",        8,  15.9994, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["F"]   = periodicElement("F",   "Fluorine",      9,  18.99840, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ne"]  = periodicElement("Ne",  "Neon",          10, 20.1797,   MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Na"]  = periodicElement("Na",  "Sodium",        11, 22.989770, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Mg"]  = periodicElement("Mg",  "Magnesium",     12, 24.3050,   MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Al"]  = periodicElement("Al",  "Aluminum",      13, 26.981538, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Si"]  = periodicElement("Si",  "Silicon",       14, 28.0855, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["P"]   = periodicElement("P",   "Phosphorus",    15, 30.97376, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["S"]   = periodicElement("S",   "Sulfur",        16, 32.065, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Cl"]  = periodicElement("Cl",  "Chlorine",      17, 35.453, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ar"]  = periodicElement("Ar",  "Argon",         18, 39.948, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["K"]   = periodicElement("K",   "Potassium",     19, 39.0983, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ca"]  = periodicElement("Ca",  "Calcium",       20, 40.078, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Sc"]  = periodicElement("Sc",  "Scandium",      21, 44.95591, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ti"]  = periodicElement("Ti",  "Titanium",      22, 47.867, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["V"]   = periodicElement("V",   "Vanadium",      23, 50.9415, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Cr"]  = periodicElement("Cr",  "Chromium",      24, 51.996, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Mn"]  = periodicElement("Mn",  "Manganese",     25, 54.9380, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Fe"]  = periodicElement("Fe",  "Iron",          26, 55.845, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Co"]  = periodicElement("Co",  "Cobalt",        27, 58.9332, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ni"]  = periodicElement("Ni",  "Nickel",        28, 58.6934, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Cu"]  = periodicElement("Cu",  "Copper",        29, 63.546, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Zn"]  = periodicElement("Zn",  "Zinc",          30, 65.409, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ga"]  = periodicElement("Ga",  "Gallium",       31, 69.723, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ge"]  = periodicElement("Ge",  "Germanium",     32, 72.64, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["As"]  = periodicElement("As",  "Arsenic",       33, 74.9216, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Se"]  = periodicElement("Se",  "Selenium",      34, 78.96, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Br"]  = periodicElement("Br",  "Bromine",       35, 79.904, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Kr"]  = periodicElement("Kr",  "Krypton",       36, 83.80, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Rb"]  = periodicElement("Rb",  "Rubidium",      37, 85.4678, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Sr"]  = periodicElement("Sr",  "Strontium",     38, 87.62, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Y"]   = periodicElement("Y",   "Yttrium",       39, 88.9059, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Zr"]  = periodicElement("Zr",  "Zirconium",     40, 91.224, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Nb"]  = periodicElement("Nb",  "Niobium",       41, 92.90638, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Mo"]  = periodicElement("Mo",  "Molybdenum",    42, 95.94, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Tc"]  = periodicElement("Tc",  "Technetium",    43, 98, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ru"]  = periodicElement("Ru",  "Ruthenium",     44, 101.07, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Rh"]  = periodicElement("Rh",  "Rhodium",       45, 102.90550, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Pd"]  = periodicElement("Pd",  "Palladium",     46, 106.42, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ag"]  = periodicElement("Ag",  "Silver",        47, 107.8682, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Cd"]  = periodicElement("Cd",  "Cadmium",       48, 112.41, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["In"]  = periodicElement("In",  "Indium",        49, 114.82, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Sn"]  = periodicElement("Sn",  "Tin",           50, 118.710, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Sb"]  = periodicElement("Sb",  "Antimony",      51, 121.760, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Te"]  = periodicElement("Te",  "Tellurium",     52, 127.60, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["I"]   = periodicElement("I",   "Iodine",        53, 126.90447, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Xe"]  = periodicElement("Xe",  "Xenon",         54, 131.29, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Cs"]  = periodicElement("Cs",  "Cesium",        55, 132.90545, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ba"]  = periodicElement("Ba",  "Barium",        56, 137.327, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["La"]  = periodicElement("La",  "Lanthanum",     57, 138.9055, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ce"]  = periodicElement("Ce",  "Cerium",        58, 140.116, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Pr"]  = periodicElement("Pr",  "Praseodymium",  59, 140.90765, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Nd"]  = periodicElement("Nd",  "Neodymium",     60, 144.24, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Pm"]  = periodicElement("Pm",  "Promethium",    61, 145, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Sm"]  = periodicElement("Sm",  "Samarium",      62, 150.36, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Eu"]  = periodicElement("Eu",  "Europium",      63, 151.964, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Gd"]  = periodicElement("Gd",  "Gadolinium",    64, 157.25, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Tb"]  = periodicElement("Tb",  "Terbium",       65, 158.92534, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Dy"]  = periodicElement("Dy",  "Dysprosium",    66, 162.50, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ho"]  = periodicElement("Ho",  "Holmium",       67, 164.9303, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Er"]  = periodicElement("Er",  "Erbium",        68, 167.26, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Tm"]  = periodicElement("Tm",  "Thulium",       69, 168.9342, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Yb"]  = periodicElement("Yb",  "Ytterbium",     70, 173.04, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Lu"]  = periodicElement("Lu",  "Lutetium",      71, 174.967, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Hf"]  = periodicElement("Hf",  "Hafnium",       72, 178.49, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ta"]  = periodicElement("Ta",  "Tantalum",      73, 180.9479, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["W"]   = periodicElement("W",   "Tungsten",      74, 183.84, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Re"]  = periodicElement("Re",  "Rhenium",       75, 186.207, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Os"]  = periodicElement("Os",  "Osmium",        76, 190.23, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ir"]  = periodicElement("Ir",  "Iridium",       77, 192.217, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Pt"]  = periodicElement("Pt",  "Platinum",      78, 195.08, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Au"]  = periodicElement("Au",  "Gold",          79, 196.96655, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Hg"]  = periodicElement("Hg",  "Mercury",       80, 200.59, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Tl"]  = periodicElement("Tl",  "Thallium",      81, 204.3833, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Pb"]  = periodicElement("Pb",  "Lead",          82, 207.2, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Bi"]  = periodicElement("Bi",  "Bismuth",       83, 208.9804, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Po"]  = periodicElement("Po",  "Polonium",      84, 209, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["At"]  = periodicElement("At",  "Astatine",      85, 210, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Rn"]  = periodicElement("Rn",  "Radon",         86, 222, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Fr"]  = periodicElement("Fr",  "Francium",      87, 223, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ra"]  = periodicElement("Ra",  "Radium",        88, 226, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ac"]  = periodicElement("Ac",  "Actinium",      89, 227, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Th"]  = periodicElement("Th",  "Thorium",       90, 232.0381, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Pa"]  = periodicElement("Pa",  "Protactinium",  91, 231.0359, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["U"]   = periodicElement("U",   "Uranium",       92, 238.0289, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Np"]  = periodicElement("Np",  "Neptunium",     93, 237, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Pu"]  = periodicElement("Pu",  "Plutonium",     94, 244, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Am"]  = periodicElement("Am",  "Americium",     95, 243, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Cm"]  = periodicElement("Cm",  "Curium",        96, 247, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Bk"]  = periodicElement("Bk",  "Berkelium",     97, 247, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Cf"]  = periodicElement("Cf",  "Californium",   98, 251, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Es"]  = periodicElement("Es",  "Einsteinium",   99, 252, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Fm"]  = periodicElement("Fm",  "Fermium",       100, 257, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Md"]  = periodicElement("Md",  "Mendelevium",   101, 258, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["No"]  = periodicElement("No",  "Nobelium",      102, 259, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Lr"]  = periodicElement("Lr",  "Lawrencium",    103, 262, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Rf"]  = periodicElement("Rf",  "Rutherfordium", 104, 261, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Db"]  = periodicElement("Db",  "Dubnium",       105, 262, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Sg"]  = periodicElement("Sg",  "Seaborgium",    106, 266, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Bh"]  = periodicElement("Bh",  "Bohrium",       107, 264, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Hs"]  = periodicElement("Hs",  "Hassium",       108, 277, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Mt"]  = periodicElement("Mt",  "Meitnerium",    109, 268, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Ds"]  = periodicElement("Ds",  "Darmstadtium",  110, 269, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Rg"]  = periodicElement("Rg",  "Roentgenium",   111, 272, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Cn"]  = periodicElement("Cn",  "Copernicium",   112, 285, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Uut"] = periodicElement("Uut", "Ununtrium",     113, 284, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Fl"]  = periodicElement("Fl",  "Flerovium",     114, 289, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Uup"] = periodicElement("Uup", "Ununpentium",   115, 288, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Lv"]  = periodicElement("Lv",  "Livermorium",   116, MT_MASS, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Uus"] = periodicElement("Uus", "Ununseptium",   117, MT_MASS, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
+
+    table["Uuo"] = periodicElement("Uuo", "Ununictium",    118, MT_MASS, MT_DENSITY, MT_GROUP, MT_PERIOD, MT_MLTPNT,
+                                   MT_BOILPNT, MT_IONENG, MT_ELECTRONEG, MT_CONFIG);
 
 
     tableIterator = table.find(input);
