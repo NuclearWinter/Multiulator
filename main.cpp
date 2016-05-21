@@ -604,9 +604,10 @@ string helpScreen(string helpWith) {
 }
 
 /** @brief Gives various values for the inputted element based on the question and amount of the element
-*   @param elementName The name of the element to check
-*   @param amount The amount of the element (to
-*/
+ *  @param elementName The name of the element to check
+ *  @param amount The amount of the element
+ *  @return The weight of an element in one mole
+ */
 double whatIsWeight(string elementName, int amount) {
     if (elementName == "start") {
         return 0;
@@ -637,8 +638,8 @@ double whatIsWeight(string elementName, int amount) {
 }
 
 /** @brief Give the weight of a compound in grams per mole
-*   @return The weight of the given compound
-*/
+ *  @return The weight of the given compound
+ */
 double gramsOfCompound(string compound) {
     cout << "Grams of compound with " << compound << endl;
 
@@ -687,30 +688,59 @@ double gramsOfCompound(string compound) {
     return weight;
 }
 
+/** @brief Find the amount of liquid within the string
+ *  @return The amount of liquid in liters
+ */
+double findLiquidAmount(string input) {
+    cout << "Find Liquid Amount with " << input << endl;
+
+    //!< Hold the amount of liquid
+    double liters = 0.0;
+    //!< Hold the string for the actual amount
+    string liquid = "";
+    //!< The unit of measurment
+    string unit;
+
+    for (string::iterator liquidCycle = input.begin(); liquidCycle != input.end(); ++liquidCycle) {
+        if (isdigit(*liquidCycle) || *liquidCycle == '.') {
+            liquid += *liquidCycle;
+        } else if (isalpha(*liquidCycle)) {
+            unit += *liquidCycle;
+        } else {
+            cerr << "findLiquidAmount: Unknown operation required for input" << endl;
+        }
+    }
+
+    liters = stod(liquid);
+
+    if (unit == "mL" || unit == "ml") {
+        liters /= 1000;
+    } else if (unit == "L" || unit == "l") {
+        liters *= 1;
+    } else {
+        cerr << "findLiquidAmount: Unknown unit " << unit << endl;
+    }
+
+    return liters;
+}
+
 /** @brief Calculate morality
  *
  */
 void molarity(vector<string> parameterList) {
-    cout << "Molarity";
-
-    if (parameterList[0] != "molarity") {
-        cerr << "Something wrong occurred when entering the molarity function";
-    } else {
-        cout << "Molarity";
-    }
+    cout << "Molarity" << endl;
 
     //!< Records the compound that we are dealing with
     string compound = " ";
-    //!< How much the compound weighs
-    double compoundWeightPerMole = 0.0;
     //!< Records the grams that we have in the mixture, starts negative so that we can check if it has been filled
-    double grams = -10;
+    double grams = -10.0;
     //!< The Grams Per Mole in the given substance, starts negative so that we can check if it has been filled
-    double gramsPerMole = -10;
-    /** The Amount of Liquid, starts at 1 to represent the molarity at 1L
-     *  if there is no unit at the end of the sequence than it is assumed to be liters
-     */
-    double la = 1;
+    double gramsPerMole = -10.0;
+    //!< The Amount of Liquid, starts at 1 to represent the molarity at 1L
+    double liters = 1;
+    //!< The moles of the compound
+    double moles = 0.0;
+
 
     //If the second element, the one after the command for this function, is help, show the help for this function
     if (parameterList[1] == "help" || parameterList[1] == "h" || parameterList[1] == "man") {
@@ -720,19 +750,23 @@ void molarity(vector<string> parameterList) {
     for (vector<string>::iterator element = parameterList.begin(); *element != "end"; ++element) {
         if (*element == "cmp") {
             compound = *(element+1);
-            //compoundWeightPerMole = !!Return of new function
-            ++element;
-        } else if (*element == "g") {
-            grams = stod(*(element+1));
+            gramsPerMole = gramsOfCompound(compound);
             ++element;
         } else if (*element == "gpm") {
-            gramsPerMole = stod(*(element+1));
+            grams = stod(*(element+1));
             ++element;
         } else if (*element == "la") {
-            //TODO liquid amount
-            //check for mL/L before filling the number
+            findLiquidAmount(*(element+1));
         }
     }
+
+    if (grams == -10.0 || gramsPerMole == -10.0) {
+        cerr << "molarity: grams or gramsPerMole value not filled";
+        helpScreen("molarity");
+    } else {
+        moles = grams / gramsPerMole;
+    }
+
 }
 
 /** @brief Calculate molality
@@ -783,6 +817,8 @@ int main() {
 
     } else if (*first == "gramsOfCompound" || *first == "gramsofcompound") {
         cout << gramsOfCompound(*(first+1));
+    } else if (*first == "findLiquidAmount" || *first == "findliquidamount") {
+        cout << findLiquidAmount(*(first+1));
     } else {
         cerr << "No functions ran\n";
     }
