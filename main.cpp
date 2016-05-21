@@ -4,6 +4,7 @@
 #include "stdio.h"
 #include <vector>
 #include <iostream>
+#include <map>
 #include "mainpage.hpp"
 
 
@@ -153,6 +154,10 @@ class periodicElement {
 
 //TODO vector that holds all the elements (and than the info needed of an element if it doesn't exist)
 //TODO function to cycle through that vector
+/** Use a map to contain all of the periodicElement(s)
+ *
+ */
+
 
 /** @brief See which elements the user needs and create them
  *  @param input The string of a particular character representing an element
@@ -162,15 +167,120 @@ bool checkElement(string input, periodicElement *placeIn) {
     cout << "Check Element with " << input << endl;
     vector<int> commonConfigurations;
 
-    if (input == "H") {
-        commonConfigurations = {1, -1};
-        *placeIn = periodicElement(/*Symbol*/"H", /*Name*/"Hydrogen", /*Number*/1, /*Mass*/1.008,
-                /*Density @stp in g/L*/0.08988, /*Group*/1, /*Period*/1, /*Meltng Point (c)*/259.16*-1,
-                /*Boiling Point (c)*/252.879*-1, /*Ionization Energy (kJ/mol)*/1312.0,
-                /*Electronegativity*/2.20 , /*Main configurations*/commonConfigurations);
+    map<string, periodicElement> table;
+    map<string, periodicElement>::iterator tableIterator;
+
+    /*Symbol Name Number Mass Density @stp in g/L Group Period Meltng Point (c)*//*Boiling Point (c)*/
+    /*Ionization Energy (kJ/mol) Electronegativity Main configurations*/
+    table["H"] = periodicElement("H", "Hydrogen", 1, 1.008, 0.08988, 1, 1, 259.16*-1, 252.879*-1, 1312.0, 2.20 , commonConfigurations);
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+    table[""] = periodicElement();
+
+
+    tableIterator = table.find(input);
+    if (tableIterator != table.end()) {
+        *placeIn = tableIterator->second;
         return true;
     } else {
-        cerr << "checkElement: cannot identify element" << endl;
+        cerr << "Could not find element" << endl;
         return false;
     }
 }
