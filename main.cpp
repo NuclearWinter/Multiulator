@@ -592,11 +592,11 @@ vector<string> input() {
 */
 string helpScreen(string helpWith) {
     if (helpWith == "molarity") {
-        return  "This is the help screen for the molarity function";
+        return  "This is the help screen for the molarity function\n";
     } else if (helpWith == "gramsOfCompound" || helpWith == "gramsofcompound") {
-        return "This is the help screen for the grams of compound function";
+        return "This is the help screen for the grams of compound function\n";
     } else if (helpWith == "molality") {
-        return "This is the help screen for the molality calculator";
+        return "This is the help screen for the molality calculator\n";
     }
 
     return "Error displaying the help screen for this program, does the program have a help screen? "
@@ -727,7 +727,7 @@ double findLiquidAmount(string input) {
 /** @brief Calculate morality
  *
  */
-void molarity(vector<string> parameterList) {
+double molarity(vector<string> parameterList) {
     cout << "Molarity" << endl;
 
     //!< Records the compound that we are dealing with
@@ -737,36 +737,54 @@ void molarity(vector<string> parameterList) {
     //!< The Grams Per Mole in the given substance, starts negative so that we can check if it has been filled
     double gramsPerMole = -10.0;
     //!< The Amount of Liquid, starts at 1 to represent the molarity at 1L
-    double liters = 1;
+    double liters = -10.0;
     //!< The moles of the compound
-    double moles = 0.0;
-
+    double moles = -10.0;
+    //!< The molarity of the substance
+    double molarity = -10;
 
     //If the second element, the one after the command for this function, is help, show the help for this function
     if (parameterList[1] == "help" || parameterList[1] == "h" || parameterList[1] == "man") {
         cout << helpScreen("molarity");
+        parameterList = input();
     }
 
-    for (vector<string>::iterator element = parameterList.begin(); *element != "end"; ++element) {
+    for (vector<string>::iterator element = parameterList.begin()+1; element != parameterList.end(); ++element) {
         if (*element == "cmp") {
             compound = *(element+1);
             gramsPerMole = gramsOfCompound(compound);
             ++element;
-        } else if (*element == "gpm") {
+        } else if (*element == "g") {
             grams = stod(*(element+1));
             ++element;
-        } else if (*element == "la") {
+        } else if (*element == "l") {
             findLiquidAmount(*(element+1));
+            ++element;
+        } else {
+            cerr << "molarity: unknown parameter " << *element <<endl;
         }
     }
 
     if (grams == -10.0 || gramsPerMole == -10.0) {
-        cerr << "molarity: grams or gramsPerMole value not filled";
-        helpScreen("molarity");
+        cerr << "molarity: grams or gramsPerMole value not filled" << endl;
+        cout << helpScreen("molarity");
     } else {
         moles = grams / gramsPerMole;
     }
 
+    if (moles == -10.0 || liters == -10.0) {
+        cerr << "molarity: moles or liters value not filled" <<endl;
+        cout << helpScreen("molarity");
+    } else {
+        molarity = moles / liters;
+    }
+
+    if (molarity <= 0) {
+        cerr << "molarity: could not calculate molarity correctly" << endl;
+        return 0;
+    }
+
+    return molarity;
 }
 
 /** @brief Calculate molality
@@ -810,7 +828,7 @@ int main() {
     if (*first == "testing") {
         testFN(parameters);
     } else if (*first == "molarity") {
-        molarity(parameters);
+        cout << molarity(parameters) <<"M" << endl;
     } else if (*first == "ksp") {
 
     } else if (*first == "molality") {
