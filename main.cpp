@@ -8,7 +8,6 @@
 #include "mainpage.hpp"
 
 //TODO look into support for more complex characters
-//TODO lewis dot diagram program
 
 using namespace std;
 
@@ -594,7 +593,7 @@ string helpScreen(string helpWith) {
                 "\n   -l (the amount of the liquid, for mL add 'ml' or 'mL' to the end)"
                 "\n   -M (the amount of moles that are had)"
                 "\nOnly the parameters needed for the equation must be entered, the program will correct you if you "
-                "enter the wrong thing";
+                "enter the wrong thing\n";
     } else if (helpWith == "gramsOfCompound" || helpWith == "gramsofcompound") {
         return "This is the help screen for the grams of compound function\n";
     } else if (helpWith == "molality") {
@@ -637,6 +636,13 @@ double whatIsWeight(string elementName, int amount) {
     }
 
     return value * amount;
+}
+
+/** @brief Gives the charge of an
+ *
+ */
+int whatIsElectronAmount(string elementName, int amount) {
+    //TODO handle different charges of elements
 }
 
 /** @brief Give the weight of a compound in grams per mole
@@ -841,11 +847,18 @@ void testFN(vector<string> parameterList) {
 
 }
 
+/** @breif
+ *  @return
+ */
+string dotDiagram(vector<string> parameterList) {
+
+}
+
 /** @brief The main function, collects parameters and runs functions
  *
  */
 int main() {
-    cout << "Welcome, please enter parameters. For possible parameters, enter 'help'" << endl;
+    cout << "Welcome, please enter parameters. For possible parameters, enter 'help' \\->\\" << endl;
     vector<string> parameters = input();
 
     /* Create an iterator so that what program to be run can be checked */
