@@ -758,7 +758,7 @@ double molarity(vector<string> parameterList) {
             grams = stod(*(element+1));
             ++element;
         } else if (*element == "l") {
-            findLiquidAmount(*(element+1));
+            liters = findLiquidAmount(*(element+1));
             ++element;
         } else {
             cerr << "molarity: unknown parameter " << *element <<endl;
@@ -773,7 +773,11 @@ double molarity(vector<string> parameterList) {
     }
 
     if (moles == -10.0 || liters == -10.0) {
-        cerr << "molarity: moles or liters value not filled" <<endl;
+        if (moles == -10) {
+            cerr << "molarity: moles not filled" << endl;
+        } else {
+            cerr << "molarity: liters not filled" << endl;
+        }
         cout << helpScreen("molarity");
     } else {
         molarity = moles / liters;
