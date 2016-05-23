@@ -7,7 +7,8 @@
 #include <map>
 #include "mainpage.hpp"
 
-
+//TODO look into support for more complex characters
+//TODO lewis dot diagram program
 
 using namespace std;
 
@@ -151,12 +152,6 @@ class periodicElement {
         periodicElement::mainConfigurations = mainConfigurations;
     }
 };
-
-//TODO vector that holds all the elements (and than the info needed of an element if it doesn't exist)
-//TODO function to cycle through that vector
-/** Use a map to contain all of the periodicElement(s)
- *
- */
 
 #define MT_MASS 0
 #define MT_DENSITY 0
@@ -592,8 +587,14 @@ vector<string> input() {
 */
 string helpScreen(string helpWith) {
     if (helpWith == "molarity") {
-        //TODO Molarity help screen
-        return  "Help for molarity:\n";
+        return  "Help for molarity:\n"
+                "Parameters:"
+                "\n   -cmp (the compound, as a string)"
+                "\n   -g (grams of the compound)"
+                "\n   -l (the amount of the liquid, for mL add 'ml' or 'mL' to the end)"
+                "\n   -M (the amount of moles that are had)"
+                "\nOnly the parameters needed for the equation must be entered, the program will correct you if you "
+                "enter the wrong thing";
     } else if (helpWith == "gramsOfCompound" || helpWith == "gramsofcompound") {
         return "This is the help screen for the grams of compound function\n";
     } else if (helpWith == "molality") {
@@ -627,7 +628,7 @@ double whatIsWeight(string elementName, int amount) {
     if (checkElement(elementName, &elementFull)) {
         value = elementFull.getMass();
     } else {
-        cout << "whatIsWeight: Unknown elementName " << elementName << "please enter its mass per mole: ";
+        cout << "whatIsWeight: Unknown elementName " << elementName << " please enter its mass per mole: ";
         cin >> value;
     }
 
@@ -640,6 +641,7 @@ double whatIsWeight(string elementName, int amount) {
 
 /** @brief Give the weight of a compound in grams per mole
  *  @return The weight of the given compound
+ *  TODO add in support for more complex comounds (i.e. Ag(NO3)2)
  */
 double gramsOfCompound(string compound) {
     cout << "Grams of compound with " << compound << endl;
@@ -649,31 +651,49 @@ double gramsOfCompound(string compound) {
     string elementAmount = "start";
     int amountOfElement  = 1;
 
-    //TODO Impliment a more elegant way to handle the first letter
     bool firstDone = false;
+    bool inParenth = false;
+    string parenthHolder = "";
     for (string::iterator letter = compound.begin(); letter != compound.end(); ++letter) {
-        if (isupper(*letter)) {
-            if (elementAmount != "start") {
-                /* Erases the 'start' in elementAmount */
-                elementAmount.erase(0, 5);
-
-                amountOfElement = (stoi(elementAmount));
-                elementAmount = "start";
+        /* Handles compounds within parenthesis (as in compounds that are their own deal on top of what they are in) */
+        if (inParenth) {
+            if (*(letter+1) == ')') {
+                parenthHolder += *letter;
+                inParenth = false;
+                weight += gramsOfCompound(parenthHolder);
+            } else {
+                parenthHolder += *letter;
             }
-
-            weight += whatIsWeight(elementHolder, amountOfElement);
-            elementHolder.erase();
-            amountOfElement = 1;
-
-            elementHolder += *letter;
-        } else if (isalpha(*letter)) {
-            elementHolder += *letter;
-        } else if (isdigit(*letter)) {
-            elementAmount += (*letter);
         } else {
-            cerr << "gramsOfCompound: error entering compounds" << endl;
+            /* This is the regular handling for character: It is important to not run what is in parenthesis twice */
+            if (isupper(*letter)) {
+                if (elementAmount != "start") {
+                    /* Erases the 'start' in elementAmount */
+                    elementAmount.erase(0, 5);
+
+                    amountOfElement = (stoi(elementAmount));
+                    elementAmount = "start";
+                }
+
+                weight += whatIsWeight(elementHolder, amountOfElement);
+                elementHolder.erase();
+                amountOfElement = 1;
+
+                elementHolder += *letter;
+            } else if (isalpha(*letter)) {
+                elementHolder += *letter;
+            } else if (isdigit(*letter)) {
+                elementAmount += (*letter);
+            } else if (*letter == '(') {
+                inParenth = true;
+            } else if (*letter == ')') {
+                //Right now nothing needs to be here, its just so that it doesn't freak out
+            } else {
+                cerr << "gramsOfCompound: error entering compounds with parameter " << *letter << endl;
+            }
         }
 
+        /* Handles the end of the compound */
         if ((letter+1) == compound.end()) {
             if (elementAmount != "start") {
                 elementAmount.erase(0, 5);
