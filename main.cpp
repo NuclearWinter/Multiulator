@@ -592,7 +592,8 @@ vector<string> input() {
 */
 string helpScreen(string helpWith) {
     if (helpWith == "molarity") {
-        return  "This is the help screen for the molarity function\n";
+        //TODO Molarity help screen
+        return  "Help for molarity:\n";
     } else if (helpWith == "gramsOfCompound" || helpWith == "gramsofcompound") {
         return "This is the help screen for the grams of compound function\n";
     } else if (helpWith == "molality") {
@@ -759,6 +760,9 @@ double molarity(vector<string> parameterList) {
             ++element;
         } else if (*element == "l") {
             liters = findLiquidAmount(*(element+1));
+            ++element;
+        } else if (*element == "M") {
+            moles = stod(*(element+1));
             ++element;
         } else {
             cerr << "molarity: unknown parameter " << *element <<endl;
