@@ -8,6 +8,8 @@
 #include "mainpage.hpp"
 
 //TODO look into support for more complex characters
+//TODO allow for arithmetic operations in input
+//TODO create classes for these with functions to be called form other functions
 
 using namespace std;
 
@@ -757,6 +759,12 @@ double findLiquidAmount(string input) {
 double molarity(vector<string> parameterList) {
     cout << "Molarity" << endl;
 
+    //If the second element, the one after the command for this function, is help, show the help for this function
+    if (parameterList[1] == "help" || parameterList[1] == "h" || parameterList[1] == "man") {
+        cout << helpScreen("molarity");
+        parameterList = input();
+    }
+
     //!< Records the compound that we are dealing with
     string compound = " ";
     //!< Records the grams that we have in the mixture, starts negative so that we can check if it has been filled
@@ -769,12 +777,8 @@ double molarity(vector<string> parameterList) {
     double moles = -10.0;
     //!< The molarity of the substance
     double molarity = -10;
-
-    //If the second element, the one after the command for this function, is help, show the help for this function
-    if (parameterList[1] == "help" || parameterList[1] == "h" || parameterList[1] == "man") {
-        cout << helpScreen("molarity");
-        parameterList = input();
-    }
+    //!< Print out verbose options
+    bool verbose = false;
 
     for (vector<string>::iterator element = parameterList.begin()+1; element != parameterList.end(); ++element) {
         if (*element == "cmp") {
@@ -791,7 +795,7 @@ double molarity(vector<string> parameterList) {
             moles = stod(*(element+1));
             ++element;
         } else {
-            cerr << "molarity: unknown parameter " << *element <<endl;
+            cerr << "molarity: unknown parameter " << *element << " Ignoring" <<endl;
         }
     }
 
@@ -825,7 +829,30 @@ double molarity(vector<string> parameterList) {
  *
  */
 void molality(vector<string> parameterList) {
+    cout << "Molality" << endl;
 
+    //If the second element, the one after the command for this function, is help, show the help for this function
+    if (parameterList[1] == "help" || parameterList[1] == "h" || parameterList[1] == "man") {
+        cout << helpScreen("molality");
+        parameterList = input();
+    }
+
+    double kilogramsSolution = -10.0;
+    double gramsCompound     = -10.0;
+    double density           = -10.0;
+    string compound          = "";
+
+    for (vector<string>::iterator element = parameterList.begin()+1; element != parameterList.end(); ++element) {
+        if (*element == "kgs" || *element == "Kgs") {
+            kilogramsSolution = stod(*(element+1));
+        } else if (*element == "gs") {
+            kilogramsSolution = stod(*(element+1))/1000;
+        } else if (*element == "g") {
+            gramsCompound = stod(*(element+1));
+        } else if (*element == "d") {
+            //density =
+        }
+    }
 }
 
 /** @brief Calculate ksp

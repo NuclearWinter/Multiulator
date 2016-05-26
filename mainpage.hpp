@@ -4,18 +4,17 @@
  * @brief Documentation for this program.
  */
 
-/*
- * @name Program Usage
+/* @name Program Usage
  * @brief How to use this program
  * @details The following details usage for various parts of this program.
  *
  * Within the main function there is handling for input. The input is stored within a vector that rotates every other
  *
  * For chemistry:
- * //temps are in celcius
-//density at stp in g/L
-//most common configuration first
-//for the number of configurations just get the size of the array
+ *  temps are in celcius
+ *  density at stp in g/L
+ *  most common configuration first
+ *  for the number of configurations just get the size of the array
  */
 
 /** TODO
@@ -29,195 +28,122 @@
  *  Add verbose as an option
  */
 
-/** Changelog
- *
+/** TODO for Math Final
+ [*]   : Put the following line's information on the notecard
+ ***** : Extreamly difficult
+ ****  : Very difficult
+ ***   : Moderetly challanging
+ **    : Somewhat easy
+ *     : Easy
+ *!!!  : Very important
+ *!!   : Important
+ *!    : Try to get done
+ *     : Honestly whatever
+ D*    : Done
+ *?    : WTF is this?
+(*)    : Description line (the following line(s) contain a series of information regarding this line)
+
+
+(*) Solve equations algebraically and graphically using...
+ *      absolute value
+ *      factoring
+ *      and radicals
+(*) Use the properties of inequalities to solve various problems including...
+ *      absolute value
+ *      rational expressions
+ *      and polynomials
+ * Find the limit of a function at a point.
+[*] Define function, domain, and range
+ * Test for a function
+ * Use function notation and evaluate a function at a given value
+ * Know function operations
+ * Know the common functions and be able to look at different aspects of functions such as...
+ *      min/max
+ *      and increasing/decreasing intervals
+ ***** Test for symmetry and describe the even/odd symmetry of a function
+ *** Use transformation properties in graphing functions
+ **** Understand piece-wise functions
+ **** Find the inverse of functions
+ * Evaluate the difference quotient and to use it to find the slope of a tangent line to a curve
+ * Asymptotes & polynomial long division
+ * Critical values to solve inequalities
+(*) Graph and write the equation for a polynomial function using the basic features of:
+ *      continuity
+ *      transformations
+ *      leading coefficient test
+ *      zeros, intermediate value theorem
+ *      increasing/decreasing
+ *      and concavity
+ * Perform polynomial long division as it applies to slant asymptotes
+ ** Perform syntheitic division.
+(*) Understand and be able to apply
+ *      Remainder Theorem
+ *      Factor Theorem
+ *      DesCartes Rule of Signs
+ *      Rational Zero Test
+ *      Fundamental Theorem of Algebra
+ * Perform basic operations using complex numbers.
+ * Express a polynomial as a product of linear or complex factors
+ * Graph a rational expression and be able to find the limit of a rational expression as x->(infinity)
+ * [Instantaneous rate of change vs. average rate of change]
+ * Be able to graph a velocity graph from a position graph
+[*] Know...
+ *      and apply Newton’s Quotient & Derivatives
+ * Equation of tangent and perpendicular lines at a point
+ * [Understand relationship of area under a curve and rate equation]
+[*] Know how to calculate sums using a calculator
+[*] Know summation notation and how to set up a problem
+[*] Know the meaning of & syntax for (pictureOne)
+ * Calculate (delta)x
+ * Set up left/right or trapezoid sums as suggested by either a graph or data
+[*] Know that the trapezoid rule is equivalent to the average of the right hand and left hand sums
+ * Define radian measure and be able to convert from one angle measure to another
+ * Express an angle in DMS or decimal form.
+ * Unit circle and all the corresponding trig functions.
+ * [Know the fundamental trig identities]
+ * Find the trig functions of any angle using reference angles
+[*] Sketch the basic trig graphs
+ * Find the inverse of a trig function.
+ * Use the fundamental identities...see sheet...to solve a trig equation.
+(*) Use laws of...
+ *      sine
+ *      cosine
+ *      & right triangles to solve triangle problems
+(*) Find...
+ ****      component
+ ****      & projections of vectors
+(*) Perform vector operations:
+ *      polygon rule
+ *      scalar multiple
+ *      norm/magnitude/length
+ ***    find angle between 2 vectors
+ *      inner product
+ *      write as a linear combination of i & j or two other vectors
+ * Use matrix methods to solve triangle and vector problems
+ * Convert from real form to trig /polar form of vectors
+ * Limits at infinity using dominant terms, looking at dominant functions, and limits of rational functions
+ * Calculate the terms of a sequence/series and [explain a sequence as a function]
+ * Calculate a factorial expression and to use sigma notation.
+(*) Be able to find...
+ *      a sequence of partial sums and to determine whether a sequence is...
+ *          arithmetic
+ *          geometric
+ *          or constant difference sequence and to express...
+ *              the sequence recursively
+ *              or with a general term expression.
+ * Convert a decimal to a repeating fraction.
+ ***** Prove a statement using the Principle of Math Induction
+ * Expand an expression using the Binomial Theorem
+ * Use the constant difference algorithm.
+ * Determine if a sequence has a limit and to find the limit...i.e. be able to determine convergence
+ * Know how to find the derivative using Newton’s Quotient and for power functions, the power rule.
+ * [Plotting coordinates & polar graphs]
+ * Families of polar graphs
+ * Parametric form of polar and rectangular equations
+[*] Know the classic polar curves
+ * Graph each given an equation and be able to write an equation given a graph
+ * Be able to convert between formats...
+ **!     rectangular
+ **!     polar
+ *?      & parametric
  */
-
-/* Storing this for reference
-struct atomElement {
-    atomElement(const string &symbol, const string &name, int number, double mass, double electronegativity,
-                double density, double meltingPoint, double boilingPoint, double ionizationEnergy, int group,
-                int period, const vector<int> &mainConfigurations) : symbol(symbol), name(name), number(number),
-                                                                     mass(mass), electronegativity(electronegativity),
-                                                                     density(density), meltingPoint(meltingPoint),
-                                                                     boilingPoint(boilingPoint),
-                                                                     ionizationEnergy(ionizationEnergy), group(group),
-                                                                     period(period),
-                                                                     mainConfigurations(mainConfigurations) { }
-
-    atomElement(const bool &filled) {}
-
-    //!< Is this atomElement filled?
-    bool filled = true;
-    //!< The element's symbol
-    string symbol;
-
-    //!< The element's full name
-    string name;
-
-    //!< The element's atomic number
-    int number;
-
-    //!< The element's atomic mass
-    double mass;
-
-    //!< The element's electronegativity
-    double electronegativity;
-    //!< The element's density
-    double density;
-    //!< The element's melting point
-    double meltingPoint;
-    //!< The element's boiling point
-    double boilingPoint;
-    //!< The element's ionization energy
-    double ionizationEnergy;
-    //!< The element's group
-    int group;
-    //!< The element's period
-    int period;
-    //!< The element's main configurations
-    vector<int> mainConfigurations;
-};
-
-
-
-
- bool plusOne = isdigit(*(letter+1));
-            bool plusTwo = isdigit(*(letter+2));
-
-            //TODO Make this more flexible for inputting different amounts
-            if (plusOne && plusTwo) {
-                amountOfElement += stoi(*(letter+2) + "");
-                amountOfElement += stoi(*(letter+1) + "") * 10;
-                amountOfElement += stoi(*(letter) + "") * 100;
-            } else if (plusOne) {
-                amountOfElement += stoi(*(letter+1) + "");
-                amountOfElement += stoi(*(letter) + "") * 10;
-            } else {
-                amountOfElement += stoi(*(letter) + "");
-            }
-if (input == "H") {
-        commonConfigurations = {1, -1};
-
-1 - H - Hydrogen
-2 - He - Helium
-3 - Li - Lithium
-4 - Be - Beryllium
-5 - B - Boron
-6 - C - Carbon
-7 - N - Nitrogen
-8 - O - Oxygen
-9 - F - Fluorine
-10 - Ne - Neon
-11 - Na - Sodium
-12 - Mg - Magnesium
-13 - Al - Aluminum, Aluminium
-14 - Si - Silicon
-15 - P - Phosphorus
-16 - S - Sulfur
-17 - Cl - Chlorine
-18 - Ar - Argon
-19 - K - Potassium
-20 - Ca - Calcium
-21 - Sc - Scandium
-22 - Ti - Titanium
-23 - V - Vanadium
-24 - Cr - Chromium
-25 - Mn - Manganese
-26 - Fe - Iron
-27 - Co - Cobalt
-28 - Ni - Nickel
-29 - Cu - Copper
-30 - Zn - Zinc
-31 - Ga - Gallium
-32 - Ge - Germanium
-33 - As - Arsenic
-34 - Se - Selenium
-35 - Br - Bromine
-36 - Kr - Krypton
-37 - Rb - Rubidium
-38 - Sr - Strontium
-39 - Y - Yttrium
-40 - Zr - Zirconium
-41 - Nb - Niobium
-42 - Mo - Molybdenum
-43 - Tc - Technetium
-44 - Ru - Ruthenium
-45 - Rh - Rhodium
-46 - Pd - Palladium
-47 - Ag - Silver
-48 - Cd - Cadmium
-49 - In - Indium
-50 - Sn - Tin
-51 - Sb - Antimony
-52 - Te - Tellurium
-53 - I - Iodine
-54 - Xe - Xenon
-55 - Cs - Cesium
-56 - Ba - Barium
-57 - La - Lanthanum
-58 - Ce - Cerium
-59 - Pr - Praseodymium
-60 - Nd - Neodymium
-61 - Pm - Promethium
-62 - Sm - Samarium
-63 - Eu - Europium
-64 - Gd - Gadolinium
-65 - Tb - Terbium
-66 - Dy - Dysprosium
-67 - Ho - Holmium
-68 - Er - Erbium
-69 - Tm - Thulium
-70 - Yb - Ytterbium
-71 - Lu - Lutetium
-72 - Hf - Hafnium
-73 - Ta - Tantalum
-74 - W - Tungsten
-75 - Re - Rhenium
-76 - Os - Osmium
-77 - Ir - Iridium
-78 - Pt - Platinum
-79 - Au - Gold
-80 - Hg - Mercury
-81 - Tl - Thallium
-82 - Pb - Lead
-83 - Bi - Bismuth
-84 - Po - Polonium
-85 - At - Astatine
-86 - Rn - Radon
-87 - Fr - Francium
-88 - Ra - Radium
-89 - Ac - Actinium
-90 - Th - Thorium
-91 - Pa - Protactinium
-92 - U - Uranium
-93 - Np - Neptunium
-94 - Pu - Plutonium
-95 - Am - Americium
-96 - Cm - Curium
-97 - Bk - Berkelium
-98 - Cf - Californium
-99 - Es - Einsteinium
-100 - Fm - Fermium
-101 - Md - Mendelevium
-102 - No - Nobelium
-103 - Lr - Lawrencium
-104 - Rf - Rutherfordium
-105 - Db - Dubnium
-106 - Sg - Seaborgium
-107 - Bh - Bohrium
-108 - Hs - Hassium
-109 - Mt - Meitnerium
-110 - Ds - Darmstadtium
-111 - Rg - Roentgenium
-112 - Cn - Copernicium
-113 - Uut - Ununtrium
-114 - Fl - Flerovium
-115 - Uup - Ununpentium
-116 - Lv - Livermorium
-117 - Uus - Ununseptium
-118 - Uuo - Ununoctium
-
-
-
-*/
